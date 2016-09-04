@@ -1,7 +1,6 @@
 public class Solution {
 	Integer code[];
 	boolean[] vis;
-	boolean found = false;
     public List<Integer> grayCode(int n) {
     	int len = (int) Math.pow(2, n);
     	vis = new boolean[len];
@@ -12,20 +11,19 @@ public class Solution {
         List<Integer> res = Arrays.asList(code);
         return res;
     }
-    private void search(int cur, int n) {
+    private boolean search(int cur, int n) {
     	if (cur == n) {
-    		found = true;
-    		return;
+    		return true;
     	}
     	for (int i = 1; i < n; i++) {
-    		if (found) return;
     		if (!vis[i] && isGrayCode(i, code[cur-1])) {
     			code[cur] = i;
     			vis[i] = true;
-    			search(cur+1, n);
-    			vis[i] = false;
+    			if (search(cur+1, n)) return true;
+    			else vis[i] = false; //important!
     		}
     	}
+    	return false;
     }
     private boolean isGrayCode(int num1, int num2) {
     	int diff = 0;

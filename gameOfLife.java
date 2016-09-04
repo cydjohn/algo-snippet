@@ -1,3 +1,4 @@
+//考察要点：2-D array in-place temmporary storage
 //O(n^2) 2-d circular traversal
 public class Solution {
 	int[] changeX = {-1, 0, 0, 1, 1, 0, 0, -1};

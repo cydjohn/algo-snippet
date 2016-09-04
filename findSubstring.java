@@ -10,7 +10,7 @@ public class Solution {
         	if (map.containsKey(str)) map.put(str, map.get(str)+1);
         	else map.put(str, 1);
         }
-        /*m is the length of each word in array words, each time get a substring of length m to check if it exits in words*/
+        /*each time get a substring of length m to check if it exits in words*/
         for (int i = 0; i <= s.length()-n*m; i++) {
             HashMap<String, Integer> copy = new HashMap(map);
         	/*if it exits, use another hashset to avoid duplicate and count the number to reach n, the number of words in array words*/

@@ -6,6 +6,7 @@
  *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
  * };
  */
+//hashmap exitence/retrive
 //the clone graph should not reference to the original graph
 public class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
@@ -25,3 +26,4 @@ public class Solution {
     	return cloneNode;
     }
 }
+

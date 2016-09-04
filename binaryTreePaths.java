@@ -8,6 +8,7 @@
  * }
  */
 //Solution 1:
+//List<String>, String is dynamic的处理方法： 
 public class Solution {
 	List<String> ret = new LinkedList<String>();
 	public List<String> binaryTreePaths(TreeNode root) {

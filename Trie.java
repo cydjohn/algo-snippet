@@ -23,7 +23,7 @@ public class Trie {
     private TrieNode put(TrieNode x, String key, int val, int d) {
     	if (x == null) x = new TrieNode();
     	if (d == key.length()) {
-    		x.val = val;
+    		x.val = val;//mark this node as the end of a word
     		return x;
     	}
     	char c = key.charAt(d);

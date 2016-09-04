@@ -8,7 +8,7 @@ public class Solution {
         }
         return res;
     }
-    private int pow(int a, int b, int c) {
+    private int pow(int a, int b, int c) {//a^b might be overfow when a is too big, so we need to mod c here
     	long res = 1;
     	long p = a;
     	while (b > 0) {
@@ -19,3 +19,5 @@ public class Solution {
     	return (int)res;
     }
 }
+
+//point: deal with possible overflow problem by mod c in every step. implement pow()

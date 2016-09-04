@@ -1,4 +1,6 @@
 //https://discuss.leetcode.com/topic/33246/java-15ms-easiest-solution-100-00
+/*You would need to optimize your backtracking to pass the larger test. Could you stop backtracking earlier?
+If the current candidate does not exist in all words' prefix, you could stop backtracking immediately. What kind of data structure could answer such query efficiently? Does a hash table work? Why or why not? How about a Trie?*/
 public class Solution {
 	List<String> res = new ArrayList();
 	public class TrieNode {
@@ -12,7 +14,7 @@ public class Solution {
 			for (char c : w.toCharArray()) {
 				int i = c - 'a';
 				if (p.next[i] == null) p.next[i] = new TrieNode();
-				p = p.next[i];
+				p = p.next[i]; 
 			}
 			p.word = w;
 		}
@@ -24,7 +26,7 @@ public class Solution {
 		p = p.next[c-'a'];
 		if (p.word != null) {
 			res.add(p.word);
-			p.word = null;
+			p.word = null; //avoid duplicate answers
 		} 
 		board[i][j] = '#';
 		if (i > 0) dfs(board, i - 1, j, p);

@@ -1,3 +1,5 @@
+//O(n^2)
+//use a & b == 0 to check if two string contains the same chars.
 public class Solution {
     public int maxProduct(String[] words) {
         int n = words.length, max = 0;

@@ -1,3 +1,90 @@
+//HashMap + max PQ O(nlogn) 
+public class Solution {
+	private class Pair{
+		int num;
+		int cnt;
+		public Pair(int n, int c) {
+			num = n;
+			cnt = c;
+		}
+	}
+    public List<Integer> topKFrequent(int[] nums, int k) {
+    //create a hashmap to store nums(key) and their counts(value)
+    	HashMap<Integer, Integer> map = new HashMap();
+    //travel the list, if the num doesn't exit, put a new pair (num, 1); if the num do exit, add its value by 1
+    	for (int i : nums) {
+    		if (map.containsKey(i))
+    			map.put(i, map.get(i)+1);
+    		else
+    			map.put(i, 1);
+    	}
+    	//create a max heap
+    	PriorityQueue<Pair> pq = new PriorityQueue(new Comparator<Pair>() {
+    		@Override
+    		public int compare(Pair a, Pair b) {
+    			return b.cnt - a.cnt;
+    		}
+    	});
+    	//maintain a heap
+    	for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+    		Pair p = new Pair(e.getKey(), e.getValue());
+    		pq.offer(p);
+    	}
+    	//get the first k element from the max heap
+    	List<Integer> res = new ArrayList();
+    	while (k > 0) {
+    		res.add(pq.poll().num);
+    		k--;
+    	}
+    	return res;
+    }
+}
+
+//imporovement: use min heap to reduce heapifying time
+//O(nlogk)
+public class Solution {
+	private class Pair{
+		int num;
+		int cnt;
+		public Pair(int n, int c) {
+			num = n;
+			cnt = c;
+		}
+	}
+    public List<Integer> topKFrequent(int[] nums, int k) {
+    //create a hashmap to store nums(key) and their counts(value)
+    	HashMap<Integer, Integer> map = new HashMap();
+    //travel the list, if the num doesn't exit, put a new pair (num, 1); if the num do exit, add its value by 1
+    	for (int i : nums) {
+    		if (map.containsKey(i))
+    			map.put(i, map.get(i)+1);
+    		else
+    			map.put(i, 1);
+    	}
+    	//create a min heap
+    	PriorityQueue<Pair> pq = new PriorityQueue(new Comparator<Pair>() {
+    		@Override
+    		public int compare(Pair a, Pair b) {
+    			return a.cnt - b.cnt;
+    		}
+    	});
+    	//maintain a heap with size of k
+    	for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+    		Pair p = new Pair(e.getKey(), e.getValue());
+    		pq.offer(p);
+    		if (pq.size() > k) pq.poll(); //remove the e with smallest cnt
+    	}
+    	//get all num from min heap
+    	List<Integer> res = new ArrayList();
+    	while (pq.size() > 0) {
+    		res.add(pq.poll().num);
+    	}
+    	return res;
+    }
+}
+
+
+//HashMap + List O(n^2)
 public class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
     //create a hashmap to store nums(key) and their counts(value)
@@ -30,3 +117,4 @@ public class Solution {
     		return ans;
     }
 }
+

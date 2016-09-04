@@ -15,7 +15,6 @@ public class Solution {
     				if (j == key) line[j] = 'Q';
     				else line[j] = '.';
     			}
-    			System.out.println(line[0]);
     			solution.add(String.valueOf(line));
     		} 
     		res.add(solution);

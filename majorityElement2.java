@@ -1,4 +1,4 @@
-//https://leetcode.com/discuss/69126/concise-java-solution-based-on-moores-voting-algorithm
+//Moore's Voting Algorithm, we need two candidates with top 2 frequency. If meeting different number from the candidate, then decrease 1 from its count, or increase 1 on the opposite condition. Once count equals 0, then switch the candidate to the current number. The trick is that we need to count again for the two candidates after the first loop. Finally, output the numbers appearing more than n/3 times.
 public class Solution {
 public List<Integer> majorityElement(int[] nums) {
         ArrayList<Integer> res = new ArrayList<Integer>();

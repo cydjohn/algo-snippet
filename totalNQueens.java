@@ -18,7 +18,7 @@ public class Solution {
     					break;
     				}
     			}
-    			if (ok) search(cur+1);
+    			if (ok) search(cur+1, n);
     		}
     	}
     }

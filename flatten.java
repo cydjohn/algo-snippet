@@ -7,6 +7,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+//从简单的树开始recurssive看问题
 public class Solution {
     public void flatten(TreeNode root) {
         if (root == null) return;
