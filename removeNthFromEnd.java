@@ -6,30 +6,21 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-
+//one-pass O(n)
 public class Solution {
-
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        //Initiate a sentinel node to avoid nullpointer exception caused by p.next or p.next.next
-        ListNode sentinel = new ListNode(0);
-        sentinel.next = head;
-        int length = 0;
-        //calculate the length of the list
-        ListNode p = head;
-        while (p != null) {
-            p = p.next;
-            length ++;
+        if (head == null) return null;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode slow = dummy, fast = dummy;
+        for (int i = 0; i < n; i++) {
+        	fast = fast.next;
         }
-        //get the exact node to remove from the front
-        int removePos =  length - n + 1;
-        //delet the node by resetting the pointers
-        p = sentinel;
-        while (removePos - 1 > 0) {
-            p = p.next;
-            removePos --;
+        while (fast.next != null) {
+        	fast = fast.next;
+        	slow = slow.next;
         }
-        p.next = p.next.next;
-        return sentinel.next;
-        }
-
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
 }
