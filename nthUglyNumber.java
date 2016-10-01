@@ -1,9 +1,9 @@
 public class Solution {
     public int nthUglyNumber(int n) {
         List<Integer> a = new ArrayList();
-        a.add(1);
-        int[] b = new int[3];
-        int[] c = {2,3,5};
+        a.add(1);//排队队列
+        int[] b = new int[3];//指针
+        int[] c = {2,3,5};//乘数
         int res = 1;
         while (n > 1) {
         	res = Math.min(Math.min(a.get(b[0])*2, a.get(b[1])*3), a.get(b[2])*5);

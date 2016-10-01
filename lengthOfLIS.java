@@ -11,7 +11,7 @@ public class Solution {
             }
             /*As this statement is executed only if idx variable is negative (meaning there is no such tail in our DP part of the array at the moment), we use -(idx + 1) to convert it to the right position.*/ 
             else if ((idx = Arrays.binarySearch(sub, 0, maxLen, nums[i])) < 0) {
-                sub[-(idx + 1)] = nums[i];
+                sub[-(idx + 1)] = nums[i];//invalid for [2,1,5,7,3]
             }
         }
         return maxLen;

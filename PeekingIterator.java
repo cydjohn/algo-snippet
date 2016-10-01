@@ -21,7 +21,6 @@ class PeekingIterator implements Iterator<Integer> {
 	// Override them if needed.
 	@Override
 	public Integer next() {
-	    if (ptr == null) return null;
 	    Integer ret = ptr;
 	    ptr = it.hasNext()?it.next():null;
 	    return ret;

@@ -1,3 +1,4 @@
+//235. Lowest Common Ancestor of a Binary Search Tree
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -20,7 +21,6 @@ public class Solution {
 			ret.add(root);
 			path(root.right, x, ret);
 		}
-
 	}
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
