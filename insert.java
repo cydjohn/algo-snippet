@@ -15,7 +15,7 @@ public class Solution {
         int size = intervals.size();
         int pos = 0;
         for (int i = 0; i < size; i++) {
-        	Interval cur = intervals.get(i); //为什么能用arraylist，而不是linkedlist?
+        	Interval cur = intervals.get(i); 
         	if (newInterval.start > cur.end) {
         		pos++;
         		ret.add(cur);

@@ -10,12 +10,12 @@ public class Solution {
             } else {
                 map.put(ch, map.get(ch) + 1);
             }
-            if (map.size() <= k && max < i - prev + 1) max = i - prev + 1;
             while (map.size() > k) {
                 if (map.get(s.charAt(prev)) == 1) map.remove(s.charAt(prev));
                 else map.put(s.charAt(prev), map.get(s.charAt(prev)) - 1);
                 prev++;
             } 
+            if (max < i - prev + 1) max = i - prev + 1;
         }
         return max;
     }

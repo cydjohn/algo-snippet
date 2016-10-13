@@ -1,3 +1,26 @@
+//in-place swap O(n)
+public class Solution {
+    public void wiggleSort(int[] nums) {
+        if (nums.length == 0) return;
+        int compare = 1; int i = 0;
+        while (i < nums.length - 1) {
+            if ((nums[i+1] - nums[i]) * compare >= 0) {
+                compare *= -1;
+                i++;
+            } else {
+                swap(nums, i, i+1); //it is always safe to swap, since nums[i] >= nums[i-1], nums[i+1] >= nums[i], then nums[i+1] >= nums[i-1] 
+            }
+        }
+    }
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+
+
+//Quick select + insersion O(n^2)
 //https://leetcode.com/discuss/92421/average-time-space-solution-using-quick-select-find-median
 public class Solution {
     public void wiggleSort(int[] nums) {
