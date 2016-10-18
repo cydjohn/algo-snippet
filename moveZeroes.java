@@ -1,4 +1,5 @@
 //#2 O(N) one pass: reduce the operations of moving numbers and traversal
+//inspired by insersion sort
 public class Solution {
     public void moveZeroes(int[] nums) {
     int zeroCount = 0;

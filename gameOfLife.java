@@ -36,30 +36,59 @@ public class Solution {
 1 -> 0 : 2 (even)
 则最后可以通过模2来得出结果。*/
 public class Solution {
-	int[] changeX = {-1, 0, 0, 1, 1, 0, 0, -1};
-	int[] changeY = {-1, 1, 1, 0, 0, -1, -1, 0};
+    int m, n;
     public void gameOfLife(int[][] board) {
-    	if (board.length == 0 || board[0].length == 0) return;
-    	for (int i = 0; i < board.length; i ++) {
-        	for (int j = 0; j < board[0].length; j++) {
-        		int cnt = calculate(board, i, j);
-        		if (board[i][j] == 0 && cnt == 3) board[i][j] = 3;
-        		else if (board[i][j] == 1 && (cnt < 2 || cnt >3)) board[i][j] = 2;
-        	}
-        }
-        for (int i = 0; i < board.length; i ++) {
-        	for (int j = 0; j < board[0].length; j++) {
-        		board[i][j] %= 2;
-        	}
-        }
+        if (board.length == 0 || board[0].length == 0) return;
+        m = board.length; n = board[0].length;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = calculate(board, i, j);
+            }
+        } 
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] %= 2;
+            }
+        } 
     }
-    private int calculate(int[][] board, int i, int j) {
-    	int x = i, y = j, res = 0;
-    	for (int k = 0; k < 8; k++) {
-    		x += changeX[k];
-    		y += changeY[k];
-    		if (x >= 0 && x < board.length && y >= 0 && y < board[0].length && (board[x][y] == 1 || board[x][y] == 2)) res++;
-    	}
-    	return res;
+    private int calculate(int[][] board, int x, int y) {
+        int sum = 0;
+        for (int i = x-1; i <= x+1; i++) {
+            for (int j = y-1; j <= y+1; j++) {
+                if (i < 0 || i >= m || j < 0 || j >= n || (i == x && j == y)) continue;
+                if (board[i][j] == 1 || board[i][j] == 2) sum += 1;
+            }
+        }
+        if (board[x][y] == 1 && (sum < 2 || sum > 3)) return 2;
+        else if (board[x][y] == 0 && sum == 3) return 3;
+        else return board[x][y];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

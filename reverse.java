@@ -1,3 +1,4 @@
+//pitfall: 加法乘法等都可能带来overflow，尤其在math类的题目integer overflow是一个常见的corner cases
 public class Solution {
     public int reverse(int x) {
         long res = 0;

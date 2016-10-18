@@ -4,6 +4,7 @@
 算法思想： 
 对当前排列从后向前扫描，找到一对为升序的相邻元素，记为i和j（i < j）。如果不存在这样一对为升序的相邻元素，则所有排列均已找到，算法结束；否则，重新对当前排列从后向前扫描，找到第一个大于i的元素k，交换i和k，然后对从j开始到结束的子序列反转，则此时得到的新排列就为下一个字典序排列。这种方式实现得到的所有排列是按字典序有序的，这也是C++ STL算法next_permutation的思想。
 */
+//case: [2,3,1]
 public class Solution {
     public void nextPermutation(int[] nums) {
         if (nums.length < 2) return;
@@ -28,9 +29,9 @@ public class Solution {
     	nums[i] = nums[j];
     	nums[j] = temp;
     }
-    private void reverse(int[] nums, int start, int end) {
-    	for (int i = 0; i <= (end-start)/2; i++) {
-    		swap(nums, start+i, end-i);
-    	}
+    private void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            swap(nums, i++, j--);
+        }
     }
 }

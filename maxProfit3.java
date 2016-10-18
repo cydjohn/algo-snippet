@@ -1,5 +1,6 @@
-//123. Best Time to Buy and Sell Stock III
+  //123. Best Time to Buy and Sell Stock III
 //at most two transactions for all days
+//允许当天先卖出然后买入
 public class Solution {
     public int maxProfit(int[] prices) {
         if (prices.length < 2) return 0;

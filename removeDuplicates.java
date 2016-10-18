@@ -15,3 +15,4 @@ public class Solution {
 }
 
 //window moving
+//不要用swap的方法，因为交换后可能会产生满足nums[j] != nums[j-1]但实际上已经重复的数据，例如［1，1，2，2］

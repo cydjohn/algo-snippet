@@ -16,6 +16,11 @@ public class Solution
     }
 }
 
+//follow up:
+/*If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you want to check one by one to see if T has its subsequence. In this scenario, how would you change your code?
+we could use a hashmap<char, List<Integer>> to store the character positions in t, and check everytime if current char of s is in t and has an index bigger s's prev char, if yes, we use the smallest index as cur's corresponding index in t. something like greedy here.*/
+
+
 //two pointers
 public class Solution {
     public boolean isSubsequence(String s, String t) {

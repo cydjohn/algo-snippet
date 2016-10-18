@@ -13,7 +13,7 @@ public class Solution {
     		int i = idx, j = len - 1;
     		while (i < j) {
     			if (nums[i] + nums[j] == target) {
-    				List<Integer> temp = new ArrayList();
+    				List<Integer> temp = new ArrayList();//不要直接使用Arrays.asList()，因为这个结构是不能改变的，所以在下面不能add
     				temp.add(nums[i]);
     				temp.add(nums[j]);
     				res.add(temp);
