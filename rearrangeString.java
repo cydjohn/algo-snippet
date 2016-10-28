@@ -31,7 +31,7 @@ public class Solution {
         	sb.append(cur.c);
         	cur.f -= 1;
         	wait.offer(cur);
-        	if (wait.size() < k) continue;
+        	if (wait.size() < k) continue;//保证相隔为K  
         	Freq front = wait.poll();
         	if (front.f > 0) pq.add(front); //put unfixed part into the heap again
         }

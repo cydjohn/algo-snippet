@@ -14,3 +14,5 @@ public class Solution {
         return maxLen;
     }
 }
+
+//如果不用dummy length，也可以用stack存储当前的末端长度，再用一个sum存储总长度

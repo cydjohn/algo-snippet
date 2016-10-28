@@ -60,3 +60,61 @@ public class WordDictionary {
 // WordDictionary wordDictionary = new WordDictionary();
 // wordDictionary.addWord("word");
 // wordDictionary.search("pattern");
+
+
+class TrieNode {
+    // Initialize your data structure here.
+    boolean isWord;
+    TrieNode[] next;
+    public TrieNode() {
+        isWord = false;
+        next = new TrieNode[26];
+    }
+}
+public class WordDictionary {
+    private TrieNode root;
+
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+
+    // Adds a word into the data structure.
+    public void addWord(String word) {
+        TrieNode x = root;
+        for (int i = 0; i < word.length(); i++) {
+            int p = word.charAt(i) - 'a';
+            if (x.next[p] == null) x.next[p] = new TrieNode();
+            x = x.next[p];
+        }
+        x.isWord = true;
+    }
+
+    public boolean search(String word) {
+        return search(word, root);
+    }
+
+    // Returns if the word is in the data structure. A word could
+    // contain the dot character '.' to represent any one letter.
+    public boolean search(String word, TrieNode x) {
+        if (word.length() == 0 && x.isWord) return true;//终止条件
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (c == '.') {
+                for (int j = 0; j < 26; j++) {
+                    if (x.next[j] == null) continue;
+                    if (search(word.substring(i+1), x.next[j])) return true;
+                }
+                return false;
+            }else {
+                if (x.next[c-'a'] == null) return false;
+                else return search(word.substring(i+1), x.next[c-'a']);
+            }
+        }
+        return false;
+    }
+}
+
+// Your WordDictionary object will be instantiated and called as such:
+// WordDictionary wordDictionary = new WordDictionary();
+// wordDictionary.addWord("word");
+// wordDictionary.search("pattern");

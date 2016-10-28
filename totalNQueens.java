@@ -1,25 +1,23 @@
 public class Solution {
-	int[] col;
-	int tot = 0;
+    int[] col;
+    int cnt = 0;
     public int totalNQueens(int n) {
         col = new int[n];
         search(0, n);
-        return tot;
+        return cnt;
     }
     private void search(int cur, int n) {
-    	if (cur == n) tot++;
-    	else {
-    		for (int i = 0; i < n; i++) {
-    			boolean ok = true;
-    			col[cur] = i; //put a quen at the cur row and the ith column
-    			for (int j = 0; j < cur; j++) {
-    				if (col[cur] == col[j] || col[cur]-cur == col[j]-j || col[cur]+cur == col[j]+j) {
-    					ok = false;
-    					break;
-    				}
-    			}
-    			if (ok) search(cur+1, n);
-    		}
-    	}
+        if (cur == n) {
+            cnt++;
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            col[cur] = i;
+            int j = 0;
+            for (; j < cur; j++) {
+                if (col[cur] == col[j] || col[cur] - cur == col[j] - j || col[cur] + cur == col[j] + j) break;
+            }
+            if (j == cur) search(cur+1, n);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class Solution {
         for (int i = 0; i < pattern.length(); i++) {
         	char p = pattern.charAt(i);
         	String w = word[i];
-        	if (map.get(p) == null) {
+        	if (!map.containsKey(p)) {
         		if (map.containsValue(w)) return false;
         		else map.put(p, w);
         	}

@@ -34,7 +34,6 @@ public class Solution {
         	}
         	leaf = newLeaf;
         }
-
         return leaf;
     }
 }

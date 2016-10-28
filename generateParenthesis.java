@@ -10,8 +10,7 @@ public class Solution {
     }
     private void backtrack(int cur, int n) {
     	if (cur == n) {
-    	    if (!stack.empty()) return;
-    		res.add(String.valueOf(c));
+    	    if (!stack.empty()) res.add(String.valueOf(c));
     		return;
     	}
     	for (int i = 0; i < 2; i++) {
