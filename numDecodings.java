@@ -1,3 +1,25 @@
+public class Solution {
+    public int numDecodings(String s) {
+        if (s == null || s.length() == 0) return 0;
+        char[] chs = s.toCharArray();
+        int[] dp = new int[chs.length];
+        if (chs[0] == '0') return 0;
+        dp[0] = 1;
+        for (int i = 1; i < chs.length; i++) {
+            if (chs[i] == '0') {
+                if (i == 0 || (chs[i-1] == '0' || chs[i-1] > '2')) return 0;
+                else dp[i] = (i > 1 ? dp[i-2] : 1);
+            } else {
+                if (chs[i-1] == '0' || chs[i-1] > '2') dp[i] = dp[i-1];
+                else if (chs[i-1] == '2' && chs[i] > '6') dp[i] = dp[i-1];
+                else dp[i] = dp[i-1] + (i > 1 ? dp[i-2] : 1);
+            }
+        }
+        return dp[chs.length-1];
+    }
+}
+
+
 //dp ver2
 public class Solution {
     public int numDecodings(String s) {

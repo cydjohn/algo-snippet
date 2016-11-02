@@ -1,4 +1,4 @@
-/**
+i/**
  * Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
@@ -29,6 +29,8 @@ public class Solution {
     	List<Integer> ans = new ArrayList();
 
     	while(true) {
+            //走到最左小，然后回退向上，保证左边孩子先被访问
+            //当为null时，表示已经没有左边孩子
     		while (root != null) {
     			stack.push(root);
     			root = root.left;
@@ -36,8 +38,11 @@ public class Solution {
     		/*stop condition: nothing to add and pop*/
     		if (stack.isEmpty()) break;
 
+            //pop出一个点，可认为其没有左边孩子或者左边孩子已经被访问
     		TreeNode node = stack.pop();
+            //访问中间节点
     		ans.add(node.val);
+            //访问右边孩子
     		root = node.right;
     	}
     	return ans;

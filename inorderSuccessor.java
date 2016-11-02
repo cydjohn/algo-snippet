@@ -12,6 +12,7 @@ public class Solution {
 	boolean foundp = false;
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         if (root == null) return null;
+        //注意这里必须设置好return函数，否则被调用的函数无法返回结果到答案中
         TreeNode left = inorderSuccessor(root.left, p);
         if (left != null) return left;
         if (foundp) return root;

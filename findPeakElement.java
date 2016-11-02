@@ -17,5 +17,20 @@ public class Solution {
     }
 }
 
+//o(n) 找到第一个
+public class Solution {
+    public int findPeakElement(int[] nums) {
+        if (nums.length == 0) return 0;
+        int res = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > nums[i-1]) {
+                res = i;
+                if (i == nums.length - 1 || nums[i] > nums[i+1]) return res;
+            }
+        }
+        return res;
+    }
+}
+
 
 

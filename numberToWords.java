@@ -7,6 +7,7 @@ private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
         int p = 0;
         String res = "";
         while (num != 0) {
+            //对每3位分别处理
         	if (num % 1000 != 0) res = helper(num % 1000) + " " + THOUSANDS[p] + " " + res;
         	num /= 1000;
         	p++;
@@ -19,6 +20,7 @@ private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
     	else if (num < 20) str = LESS_THAN_20[num];
     	else if (num < 100) str = TENS[num / 10] + " " + helper(num % 10);
     	else str = LESS_THAN_20[num / 100] + " Hundred " + helper(num % 100); 
+        //注意最后需要trim，否则在最后两个else if会添加额外的空格
     	return str.trim();
     }
 }

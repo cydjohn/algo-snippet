@@ -9,29 +9,21 @@
  * }
  */
 public class Solution {
-	//get the ancestor path list of node x, the path list includes node x
-	private void path(TreeNode root, TreeNode x, List<TreeNode> ret) {
-		if (root == null) return;
-		if (root.val == x.val) ret.add(root);
-		else if (x.val < root.val) {
-			ret.add(root);
-			path(root.left, x, ret);
-		}
-		else {
-			ret.add(root);
-			path(root.right, x, ret);
-		}
-	}
-
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        List<TreeNode> pl = new ArrayList();
-        List<TreeNode> ql = new ArrayList();
-        path(root, p, pl);
-        path(root, q, ql);
-        int i = pl.size()-1;
-        for (; i > 0; i--) {
-        	if (ql.contains(pl.get(i))) break;
+        List<TreeNode> p1 = new ArrayList();
+        List<TreeNode> p2 = new ArrayList();
+        findPath(root, p, p1);
+        findPath(root, q, p2);
+        for (int i = 0; i < Math.min(p1.size(), p2.size()); i++) {
+            if (p1.get(i) != p2.get(i)) return p1.get(i-1);
         }
-        return pl.get(i);
+        return p1.size() > p2.size() ? p2.get(p2.size()-1) : p1.get(p1.size()-1);
+    }
+    private void findPath(TreeNode root, TreeNode x, List<TreeNode> list) {
+        if (root == null) return; //可不检查这个corner case，如果题目假设一定能找到这个点
+        list.add(root);
+        if (root == x) return;
+        if (root.val > x.val) findPath(root.left, x, list);
+        else findPath(root.right, x, list);
     }
 }

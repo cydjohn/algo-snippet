@@ -46,19 +46,19 @@
 public class Solution {
     public NestedInteger deserialize(String s) {
         Stack<NestedInteger> stack = new Stack();
-        int sign = 1;
+        int sign = 1;//pitfall:数字string转化为int，注意正负号的讨论
         Integer num = null;
         for (int i = 0; i < s.length(); i++) {
         	char cur = s.charAt(i);
         	if (cur == '-') sign = -1;
-        	else if (cur >= '0' && cur <= '9') num = (num == null ? 0 : num) * 10 + (cur - '0');
+        	else if (cur >= '0' && cur <= '9') num = (num == null ? 0 : num) * 10 + (cur - '0'); //pitfall：不能在此压栈，因为可能是corner case只有数字的，战中没有peek的nestedInteger，会导致报错
         	else if (cur == '[') {
         		stack.push(new NestedInteger());
         	}
         	else {
         		if (num != null) {
         			stack.peek().add(new NestedInteger(num * sign));
-        			sign = 1;
+        			sign = 1; //pitfall: 注意重置sign和num
         			num = null;
         		}
         		if (cur == ']') {
@@ -71,6 +71,6 @@ public class Solution {
         		}
         	}
         }
-        return new NestedInteger(num * sign);
+        return new NestedInteger(num * sign);//pitfall: 如果没有［］只有数字，则应该返回数字
     }
 }

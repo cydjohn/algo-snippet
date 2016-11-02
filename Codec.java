@@ -11,8 +11,10 @@ public class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        //如果到达末尾，插入＃
         if (root == null) return "#";
         StringBuilder sb = new StringBuilder();
+        //否则按照preorder插入string中
         sb.append(root.val).append(' ');
         sb.append(serialize(root.left)).append(' ');
         sb.append(serialize(root.right));
@@ -23,7 +25,9 @@ public class Codec {
     public TreeNode deserialize(String data) {
         if (data == null || data.length() == 0) return null;
         String[] st = data.split(" ");
-        int[] d = new int[1];//array is passed by reference
+        //array is passed by reference
+        //如果不用reference传参数，无法确定root.right的指向位置，因为preorder需要先遍历完左边才到右边
+        int[] d = new int[1];
         return dfs(st, d);
     }
     private TreeNode dfs(String[] st, int[] d) {

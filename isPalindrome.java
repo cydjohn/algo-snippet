@@ -20,6 +20,7 @@ public class Solution {
     	return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9');
     }
     private char toDiffCase(char ch) {
+        //大写字母转成小写字母加上32
     	if (ch >= 'a' && ch <= 'z') return (char)(ch-32);
     	else if (ch >= 'A' && ch <= 'Z') return (char)(ch+32);
     	else return ch;

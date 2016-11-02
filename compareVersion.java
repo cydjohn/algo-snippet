@@ -2,6 +2,8 @@
 //A: int. strings.compareTo() method is based on lexicographical sorting, so "01" > "1", but Integer.parseInt() will maintained the right comparison.
 public class Solution {
     public int compareVersion(String version1, String version2) {
+        //You need to escape the dot if you want to split on a literal dot
+        //Otherwise you are splitting on the regex ., which means "any character".
         String[] v1 = version1.split("\\.");
         String[] v2 = version2.split("\\.");
         int len = Math.max(v1.length, v2.length);

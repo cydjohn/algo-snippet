@@ -6,6 +6,7 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+//heap + list
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) return null;
@@ -16,7 +17,7 @@ public class Solution {
         });
         int emptyList = 0;
         for (ListNode i : lists) {
-            if (i == null) emptyList++;
+            if (i == null) emptyList++;//pitfall:可能所有的list都是空的
         	else pq.add(i);
         }
         if (emptyList == lists.length) return null;
