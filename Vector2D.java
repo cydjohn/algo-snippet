@@ -23,7 +23,6 @@ public class Solution {
       array.get(rowId).isEmpty())) {
       rowId++;
     }
-     
     return rowId < numRows;
   }
    
@@ -45,6 +44,7 @@ public class Solution {
      
     // Case 1: if the element to remove is the last element of the row
     if (colId == 0) {
+        //if multiple empty list is the median, consider while loop to find the right row.
       rowToRemove = rowId - 1;
       listToRemove = array.get(rowToRemove);
       colToRemove = listToRemove.size() - 1;       
