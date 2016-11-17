@@ -10,6 +10,7 @@
 public class Codec {
 
     // Encodes a tree to a single string.
+    //只能用precorder, inorder的traversal无法复原原来的tree的结构，因为有相同的value的tree的in order traversal是相同的，但是其结构可以不同
     public String serialize(TreeNode root) {
         //如果到达末尾，插入＃
         if (root == null) return "#";
@@ -27,6 +28,7 @@ public class Codec {
         String[] st = data.split(" ");
         //array is passed by reference
         //如果不用reference传参数，无法确定root.right的指向位置，因为preorder需要先遍历完左边才到右边
+        //也可以申明一个全局的int变量来防止pass by value的影响
         int[] d = new int[1];
         return dfs(st, d);
     }

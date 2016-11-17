@@ -8,6 +8,7 @@
  * }
  */
 /*dfs inorder traversal with stack*/
+//also we could use queue.poll() function and implmented the traversal directly as inorder traversal goes
 public class BSTIterator {
 	Stack<Integer> stack = new Stack();
     public BSTIterator(TreeNode root) {

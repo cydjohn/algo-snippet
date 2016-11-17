@@ -27,3 +27,35 @@ public class Solution {
         else findPath(root.right, x, list);
     }
 }
+
+
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == p && root == q) return root;
+        TreeNode x = lowestCommonAncestor(root.left, p, q);
+        //如果p q都在左子树
+        if (x != null && x != p && x != q) return x;
+        //如果p q都在右子树
+        TreeNode y = lowestCommonAncestor(root.right, p, q);
+        if (y != null && y != p && y != q) return y;
+        //p, q分别在不同的子树
+        if (x != null && y != null) return root;
+        //x,y有一个为空，而root是p, q其中的一个
+        else if (root == p || root == q) return root;
+        else return x == null ? y : x;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
