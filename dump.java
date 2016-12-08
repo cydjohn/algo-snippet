@@ -43,51 +43,6 @@ dump_water(terrain, water_amount, dump_location)
 
  */
 
-import java.io.*;
-import java.util.*;
-
-/*
- * To execute Java, please define "static void main" on a class
- * named Solution.
- *
- * If you need more classes, simply define them inline.
- 
-A terrain of `[5,4,2,1,2,3,2,1,0,1,2,4]` will look like
-+           
-++         +
-++   +     +
-+++ +++   ++
-++++++++ +++
-++++++++++++
-
-
-water_amount = 8
-dump_location = 1
-
-dump_water(terrain, water_amount, dump_location)
-
-=>
-+           
-++         +
-++WWW+     +
-+++W+++WWW++
-++++++++W+++
-++++++++++++
-
-water_amount = 8
-dump_location = 10
-
-dump_water(terrain, water_amount, dump_location)
-         =>
-+           
-++         +
-++   +WWWW +
-+++ +++WWW++
-++++++++W+++
-++++++++++++
-
- */
-
 class Solution {
   static int[] addW; //the number of W added to each column
   static int sum = 0; //current water amount 
