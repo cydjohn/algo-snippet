@@ -23,6 +23,38 @@ public class Solution {
     }
 }
 
+//interation with DP
+public class Solution {
+    public List<List<Integer>> combinationSum(int[] nums, int target) {
+        if(nums == null || nums.length == 0)
+            return new LinkedList<List<Integer>>();
+        //Arrays.sort(nums);
+        HashMap<Integer, List<List<Integer>>> dp = new HashMap<Integer, List<List<Integer>>>();
+        dp.put(0, new LinkedList<List<Integer>>());
+        dp.get(0).add(new LinkedList<Integer>());
+        
+        for(int i = 0; i < nums.length; i++){
+            int cur = nums[i];
+            for(int j = cur; j <= target; j++){
+                if(dp.containsKey(j - cur)){
+                    for(List<Integer> sol : dp.get(j - cur)){
+                        List<Integer> curSol = new LinkedList<Integer>(sol);
+                        curSol.add(cur);
+                        if(!dp.containsKey(j)){
+                            dp.put(j, new LinkedList<List<Integer>>());
+                        }
+                        dp.get(j).add(curSol);
+                    }
+                }
+            }
+        }
+        if(dp.get(target) == null)  
+            return new LinkedList<List<Integer>>();
+        return dp.get(target);
+    }
+}
+
+
 //recurssive
 public class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {

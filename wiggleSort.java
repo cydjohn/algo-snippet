@@ -2,6 +2,25 @@
 public class Solution {
     public void wiggleSort(int[] nums) {
         if (nums.length == 0) return;
+        int isPositive = 1; //the sign of nums[i]-nums[i-1]
+        for (int i = 1; i < nums.length; i++) {
+            if ((nums[i] - nums[i-1]) * isPositive < 0) {
+                swap(nums, i, i-1); //it is always safe to swap, since nums[i] >= nums[i-1], nums[i+1] >= nums[i], then nums[i+1] >= nums[i-1] 
+            }
+            isPositive *= -1;
+        }
+    }
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+
+//in-place swap O(n)
+public class Solution {
+    public void wiggleSort(int[] nums) {
+        if (nums.length == 0) return;
         int compare = 1; int i = 0;
         while (i < nums.length - 1) {
             if ((nums[i+1] - nums[i]) * compare >= 0) {

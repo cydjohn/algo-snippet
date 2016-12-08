@@ -1,3 +1,4 @@
+//注意遍历的顺序，从左到右遍历，每次复用之前的结果，保证了candy[i]一定比candy[i－1]要大，如果符合rating的要求的话
 public class Solution {
     public int candy(int[] ratings) {
     	int[] candy = new int[ratings.length];

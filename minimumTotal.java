@@ -11,7 +11,7 @@ public class Solution {
         	for (int j = 0; j <= i; j++) {
         		int cur = triangle.get(i).get(j);
         		if (j == 0) dp[j] = prev[j] + cur;
-        		else if (j == len-1) dp[j] = prev[j-1] + cur;
+        		else if (j == i) dp[j] = prev[j-1] + cur;
         		else dp[j] = cur + Math.min(prev[j-1], prev[j]);
         		if (i == n-1 && dp[j] < min) min = dp[j]; 
         	}

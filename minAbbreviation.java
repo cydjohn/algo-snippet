@@ -44,7 +44,7 @@ public class Abbreviation{
             return;
         }
         generateAbbrs(q, target, path+target.charAt(start), start+1, len+1, false);
-        if(!prevAbbr){
+        if(!prevAbbr){//prevAbbr用来防止相邻部分重复压缩，结果中不能出现相邻的数字
             for(int i=start; i<target.length(); i++){
                 String str = target.substring(start, i+1);
                 generateAbbrs(q, target, path+Integer.toString(str.length()), i+1, len+1, true);

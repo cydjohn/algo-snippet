@@ -7,7 +7,10 @@ public class Solution {
     public int jump(int[] nums) {
         int curRch = 0, curMax = 0, cnt = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (curRch < i) { //当curRch >= nums.length-1，cnt将不再可能增加
+            //当curRch >= nums.length-1，cnt将不再可能增加
+            //不能写成curRch < curMax，因为可能在当前可达到的range里比较靠后的位置可以一步跳到更远的地方，应该走完当前的range并等待选择这一步
+            //也可以在这里用一个for loop找出当前range的最大可能跳
+            if (curRch < i) { 
                 cnt++;
                 curRch = curMax;
             }

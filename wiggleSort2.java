@@ -1,3 +1,20 @@
+/*排序，然后两边分别取，复杂度O(n)
+
+注意排完序之后应该倒着来。比如[4,5,5,6]这个 数据。*/
+public class Solution {
+    public void wiggleSort(int[] nums) {
+        Arrays.sort(nums);
+        int[] temp = new int[nums.length];
+        int s = (nums.length + 1) >> 1, t = nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            temp[i] = (i & 1) == 0 ?  nums[--s] : nums[--t] ;
+        }
+ 
+        for (int i = 0; i < nums.length; i++)
+            nums[i] = temp[i];
+    }
+}
+
 //https://leetcode.com/discuss/77133/o-n-o-1-after-median-virtual-indexing
 import java.util.Random;
 public class Solution {

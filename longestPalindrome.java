@@ -4,6 +4,7 @@ public class Solution {
         if (s.length() < 2) return s;
         int n = s.length(), ss = 0, max = 1;
         boolean[][] dp = new boolean[n][n];//if substring from i to j is palindrom
+        //循环的顺序有很多种，只要保证dp[i][j]计算前,dp[i+1][j-1]被计算过即可
         for (int j = 1; j < n; j++) {
             for (int i = 0; i < j; i++) {
                 if ((i+1 >= j-1 || dp[i+1][j-1]) && s.charAt(i) == s.charAt(j)) {
