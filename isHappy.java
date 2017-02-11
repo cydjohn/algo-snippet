@@ -2,16 +2,16 @@
 public class Solution {
     public boolean isHappy(int n) {
         HashSet<Integer> old = new HashSet();
-        do {
-        	old.add(n);
-        	int sum = 0;
-        	while (n != 0) {
-        		sum += (int)(Math.pow(n % 10, 2));
-        		n /= 10;
-        	}
-        	if (sum == 1) return true;
-        	n = sum;
-        } while(!old.contains(n));
+        while(!old.contains(n)) {
+            old.add(n);
+            int sum = 0;
+            while (n != 0) {
+                sum += (int)(Math.pow(n % 10, 2));
+                n /= 10;
+            }
+            if (sum == 1) return true;
+            n = sum;
+        }
         return false;
     }
 }

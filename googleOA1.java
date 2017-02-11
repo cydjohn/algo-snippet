@@ -1,22 +1,25 @@
-public class HelloWorld{
-    public static int solution(int x) {
-		int prev = x % 10;//the last num stored for comparison
-		int left = x / 10;//the num before current comparison
-		int right = 0;// the num after current comparison
-		int min = Integer.MAX_VALUE;
-		int tens = 1;
-		while (left != 0) {
-			int cur = left % 10;//current num
-			left /= 10;
-			int tmp = (left * 10 + Math.max(prev, cur)) * tens + right;
-			if (tmp < min) min = tmp;
-			right = right + prev * tens;
-			prev = cur;//move forward
-			tens *= 10;
-		}
-		return min;
-	 }
+public class Solution{
+  /**
+  * @param int 
+  * @return 
+  */
+    public static int replaceAdjacentDigitToMax(int x) {
+    int lastDigit = x % 10, leftPart = x / 10, rightPart = 0, tens = 1;
+    int maxNum = Integer.MIN_VALUE;
+    while (leftPart != 0) {
+      int curDigit = leftPart % 10;
+      leftPart /= 10;
+      int roundUp = (int)(Math.ceil((lastDigit + curDigit)/2.0));
+      int tempNum = (roundUp + leftPart * 10) * tens + rightPart;
+      if (tempNum > maxNum) maxNum = tempNum;
+      rightPart = lastDigit * tens + rightPart;
+      lastDigit = curDigit;
+      tens *= 10;
+    }
+    return maxNum;
+   }
     public static void main(String []args){
-        System.out.println(solution(233614));
+        System.out.println(replaceAdjacentDigitToMax(623315));
     }
 }
+

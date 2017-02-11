@@ -25,3 +25,30 @@ public class Solution {
         return map.get(head);
     }
 }
+
+//DFS
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+        if (head == null) return null;
+        Map<RandomListNode, RandomListNode> map = new HashMap<>();
+        return dfs(head, map);
+    }
+    public RandomListNode dfs(RandomListNode head, Map<RandomListNode, RandomListNode> map) {
+        if (head == null) return null;
+        RandomListNode node = new RandomListNode(head.label);
+        map.put(head, node);
+        if (!map.containsKey(head.next)) {
+            RandomListNode next = dfs(head.next, map);
+            node.next = next;
+        } else {
+            node.next = map.get(head.next);
+        }
+        if (!map.containsKey(head.random)) {
+            RandomListNode random = dfs(head.random, map);
+            node.random = random;
+        } else {
+            node.random = map.get(head.random);
+        }
+        return node;
+    }
+}

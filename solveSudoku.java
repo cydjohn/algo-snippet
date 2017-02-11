@@ -32,3 +32,5 @@ public class Solution {
     	return true;
     }
 }
+
+//improvement: replace linear-time checking of isValid() by building hashtables for rows, cols, and submatrixs.

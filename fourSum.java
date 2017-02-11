@@ -1,4 +1,4 @@
-//two pointers O(n^2)
+//two pointers + recirssove O(n^2)
 public class Solution {
 	int len = 0;
     public List<List<Integer>> fourSum(int[] nums, int target) {
@@ -36,5 +36,12 @@ public class Solution {
     		}
     	}
     	return res;
+    }
+}
+
+//hashtable O(n^2)
+public class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        
     }
 }

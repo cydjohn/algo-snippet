@@ -2,11 +2,6 @@ import java.io.*;
 import java.util.*;
 
 /*
- * To execute Java, please define "static void main" on a class
- * named Solution.
- *
- * If you need more classes, simply define them inline.
- 
 A terrain of `[5,4,2,1,2,3,2,1,0,1,2,4]` will look like
 +           
 ++         +
@@ -14,7 +9,6 @@ A terrain of `[5,4,2,1,2,3,2,1,0,1,2,4]` will look like
 +++ +++   ++
 ++++++++ +++
 ++++++++++++
-
 
 water_amount = 8
 dump_location = 1
@@ -25,8 +19,8 @@ dump_water(terrain, water_amount, dump_location)
 +           
 ++         +
 ++WWW+     +
-+++W+++WWW++
-++++++++W+++
++++W+++WWWW+
+++++++++WW++
 ++++++++++++
 
 water_amount = 8
@@ -125,3 +119,4 @@ class Solution {
      }
   }
 }
+

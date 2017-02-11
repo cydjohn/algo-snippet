@@ -24,3 +24,5 @@ public class Solution {
         return a;
     }
 }
+
+//陷阱：必须先判断a,b是否为null，再next，否则可能导致无限循环。

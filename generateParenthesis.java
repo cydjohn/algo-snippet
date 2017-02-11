@@ -1,3 +1,28 @@
+//backtrack without stack
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        char[] temp = new char[n*2];
+        backtrack(res, temp, 0, n, n, 0);
+        return res;
+    }
+    public void backtrack(List<String> res, char[] temp, int cur, int lt, int rt, int curLt) {
+        if (cur == temp.length) {
+            res.add(String.valueOf(temp));
+            return;
+        }
+        if (lt > 0) {
+            temp[cur] = '(';
+            backtrack(res, temp, cur+1, lt-1, rt, curLt+1);
+        }
+        if (rt > 0 && curLt > 0) {
+            temp[cur] = ')';
+            backtrack(res, temp, cur+1, lt, rt-1, curLt-1);
+        }
+    }
+}
+
+
 //backtrack with stack
 public class Solution {
 	Stack<Character> stack = new Stack();
@@ -27,43 +52,5 @@ public class Solution {
     }
 }
 
-//backtrack without stack
-public class Solution {
-	List<String> res = new ArrayList();
-	char[] a;
-	boolean[] vis;
-    public List<String> generateParenthesis(int n) {
-        a = new char[n*2];
-        vis = new boolean[n*2];
-        search(0, n*2, n, n);
-        return res;
-    }
-    private void search(int cur, int n, int lt, int rt) {
-    	if (cur == n) res.add(String.valueOf(a));
-    	else {
-    		for (int i = 0; i < 2; i++) {
-    			boolean ok = true;
-    			int j = -1;
-    			a[cur] = (i == 0 ? '(' : ')');
-    			if (i == 0) lt--;
-    			else rt--;
-    			if (lt == -1 || rt == -1) ok = false;
-    			else if (i == 1) {
-    				j = cur - 1;
-    				for (; j >= 0; j--) {
-    					if (a[j] == '(' && !vis[j]) {
-    						vis[j] = true;
-    						break;
-    					}
-    				}
-    				if (j == -1) ok = false;
-    			}
-    			if (ok) search(cur+1, n, lt, rt);
-    			if (j > -1) vis[j] = false;
-    			if (i == 0) lt++;
-    			else rt++;
-    		}
-    	}
-    }
-}
+
 

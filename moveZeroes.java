@@ -1,3 +1,23 @@
+//如果不需要保持非零元素的顺序
+//operation数目：非零元素以及零元素的数目的最小值
+public class Solution {
+    public void moveZeroes(int[] nums) {
+        int i = 0, j = nums.length-1;
+        while (i <= j) {
+            while (i <= j && nums[j] == 0) j--;
+            while (i <= j && nums[i] != 0) i++;
+            if (i <= j) swap(nums, i, j);
+        }
+    }   
+    public void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+}
+
+//需要保持非零元素的数目
+//operation数目：非零元素的数目
 //#2 O(N) one pass: reduce the operations of moving numbers and traversal
 //inspired by insersion sort
 public class Solution {
