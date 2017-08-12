@@ -1,3 +1,66 @@
+//method1
+public class WordDictionary {
+    public class TrieNode {
+        TrieNode[] next;
+        boolean isWord;
+        public TrieNode() {
+            next = new TrieNode[26];
+            isWord = false;
+        }
+    }
+    public TrieNode root;
+    /** Initialize your data structure here. */
+    public WordDictionary() {
+        root = new TrieNode();
+    }
+    
+    /** Adds a word into the data structure. */
+    public void addWord(String word) {
+        TrieNode p = root;
+        for (char c : word.toCharArray()) {
+            if (p.next[c-'a'] == null) p.next[c-'a'] = new TrieNode();
+            p = p.next[c-'a'];
+        }
+        p.isWord = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    public boolean search(String word) {
+        TrieNode p = root;
+        return searchWith(word, p);
+    }
+    
+    public boolean searchWith(String word, TrieNode p) {
+        if (p == null) return false;
+        if (word.length() == 0) {//单字母的string单substring（1）仍然存在，长度为0
+            if (p != null && p.isWord) return true;
+            else return false;
+        }
+        char c = word.charAt(0);
+        if (c == '.') {
+            boolean hasNext = false;
+            for (int i = 0; i < 26; i++) {
+                if (p.next[i] != null) {
+                    hasNext = true;
+                    if (searchWith(word.substring(1), p.next[i])) return true;
+                }
+            }
+            if (!hasNext) return false;
+        } else {
+            return searchWith(word.substring(1), p.next[c-'a']);
+        }
+        return false;
+    }
+}
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary obj = new WordDictionary();
+ * obj.addWord(word);
+ * boolean param_2 = obj.search(word);
+ */
+
+//method2
 class TrieNode {
     // Initialize your data structure here.
     int val;
