@@ -6,27 +6,23 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-//heap + list
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) return null;
-        PriorityQueue<ListNode> pq = new PriorityQueue(new Comparator<ListNode>() {
-        	public int compare(ListNode a, ListNode b) {
-        		return a.val - b.val;
-        	}
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>(){
+            public int compare(ListNode a, ListNode b) {
+                return a.val - b.val;
+            }
         });
-        int emptyList = 0;
-        for (ListNode i : lists) {
-            if (i == null) emptyList++;//pitfall:可能所有的list都是空的
-        	else pq.add(i);
+        for (ListNode l : lists) {
+            if (l != null) pq.offer(l);
         }
-        if (emptyList == lists.length) return null;
         ListNode res = new ListNode(0);
         ListNode p = res;
         while (!pq.isEmpty()) {
-        	p.next = pq.poll();
-        	p = p.next;
-        	if (p.next != null) pq.add(p.next);
+            ListNode cur = pq.poll();
+            if (cur.next != null) pq.offer(cur.next);
+            p.next = cur;
+            p = p.next;
         }
         return res.next;
     }
