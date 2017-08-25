@@ -10,6 +10,51 @@
 //("er", "ertt",): the last row exist, but char of the same index might not exist, in that case, we should stop comparison, and move on to next row.
 //["wrtkj","wrt"] : invalid --> return ""
 //["wrt", "wrf",] : g['t' - 'a'].add('f');
+
+class Solution {
+    public String alienOrder(String[] words) {
+        if (words == null || words.length == 0) return "";
+        List<Integer>[] g = (List<Integer>[]) new List[256];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < words.length; i++) {
+            char[] prev = i > 0 ? words[i-1].toCharArray() : (new char[0]);
+            char[] cur = words[i].toCharArray();
+            int j = 0; boolean found = false; 
+            for (;j < cur.length; j++) {
+                if (g[cur[j] - '0'] == null) g[cur[j] - '0'] = new ArrayList<Integer>();
+                if (j < prev.length) {
+                    if (!found && cur[j] != prev[j]) {
+                        g[prev[j] - '0'].add(cur[j] - '0');
+                        found = true;
+                    }
+                }  
+            }
+            if  (!found && j == cur.length && j < prev.length) return "";
+        }
+        
+        boolean[] vis = new boolean[256];
+        boolean[] inPath = new boolean[256];
+        for (int i = 0; i < 256; i++) {
+            if (vis[i] || g[i] == null) continue;
+            if (hasCycle(g, stack, vis, inPath, i)) return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!stack.empty()) sb.append((char)(stack.pop() + '0'));
+        return sb.toString();
+    }
+    public boolean hasCycle(List<Integer>[] g, Stack<Integer> stack, boolean[] vis, boolean[] inPath, int i) {
+        vis[i] = true;
+        inPath[i] = true;
+        for (int w : g[i]) {
+            if (inPath[w]) return true;
+            if (!vis[w] && hasCycle(g, stack, vis, inPath, w)) return true;
+        }
+        inPath[i] = false;
+        stack.push(i);
+        return false;
+    }
+}
+
 public class Solution {
     boolean[] vis = new boolean[26];
     List<Character>[] g; //for causal relation graph
