@@ -8,6 +8,19 @@
  * }
  */
 //从简单的树开始recurssive看问题
+
+private TreeNode prev = null;
+
+public void flatten(TreeNode root) {
+    if (root == null)
+        return;
+    flatten(root.right);
+    flatten(root.left);
+    root.right = prev;
+    root.left = null;
+    prev = root;
+}
+
 public class Solution {
     public void flatten(TreeNode root) {
         if (root == null) return;
